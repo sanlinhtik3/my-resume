@@ -35,7 +35,8 @@ const Main = () => {
     career: true,
     phone: true,
     email: true,
-    behance: true
+    behance: true,
+    aboutme: true
   });
 
 
@@ -49,70 +50,7 @@ const Main = () => {
             onSubmit={handleSubmit}
           >
             <div className="p-5 font-poppin space-y-5">
-              <div className=""></div>
-
-              <div className=" flex justify-between gap-5">
-                <div className="h-px w-full bg-lime-500 mt-2"></div>
-                <div className="">
-                  <table className="table-auto my-0">
-                    <tr>
-                      <th className="text-start pr-10">Phone</th>
-                      <td className="whitespace-nowrap">
-                        <TextInput
-                          value={getInfo.phone}
-                          name="phone"
-                          onChange={handleChange}
-                          className={` border`}
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className=" text-start pr-10">Email</th>
-                      <td className="whitespace-nowrap">
-                        <TextInput
-                          value={getInfo.email}
-                          name="email"
-                          onChange={handleChange}
-                          className={` border`}
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className=" text-start pr-10">Behance</th>
-                      <td className="whitespace-nowrap">
-                        <TextInput
-                          value={getInfo.behance}
-                          name="behance"
-                          onChange={handleChange}
-                          className={` border`}
-                        />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-
-              <div className=" grid grid-cols-12 mt-0">
-                <div className="col-span-3">
-                  <div className="">
-                    <h4 className=" bg-lime-500 rounded-md px-3 py-1 ml-8 inline-block text-white uppercase">
-                      Hello!
-                    </h4>
-                  </div>
-                </div>
-                <div className="col-span-9">
-                  <div className=" space-y-5 text-lime-500">
-                    <TextArea
-                      value={getInfo.aboutme}
-                      name="aboutme"
-                      onChange={handleChange}
-                      className={` border`}
-                      rows="10"
-                    />
-                  </div>
-                </div>
-              </div>
-
+              
               {/* Experience */}
               <div className="">
                 <div className=" grid grid-cols-12">
@@ -303,7 +241,9 @@ const Main = () => {
             <div className="p-5 font-poppin space-y-5">
               {isEdit.name ? (
                 <h1
-                  onDoubleClick={() => setIsEdit({ ...isEdit, name: !isEdit.name})}
+                  onDoubleClick={() =>
+                    setIsEdit({ ...isEdit, name: !isEdit.name })
+                  }
                   className=" text-lime-500 uppercase"
                 >
                   {getInfo.name}
@@ -326,7 +266,9 @@ const Main = () => {
               <div className=" flex justify-between gap-5">
                 {isEdit.career ? (
                   <h4
-                    onDoubleClick={() => setIsEdit({ ...isEdit, career:!isEdit.career})}
+                    onDoubleClick={() =>
+                      setIsEdit({ ...isEdit, career: !isEdit.career })
+                    }
                     className="  text-lime-500 font-bold uppercase whitespace-nowrap my-0"
                   >
                     {getInfo.career}
@@ -416,7 +358,9 @@ const Main = () => {
                       <td className="whitespace-nowrap">
                         {isEdit.behance ? (
                           <h4
-                            onDoubleClick={() => setIsEdit({ ...isEdit, behance: !isEdit.behance})}
+                            onDoubleClick={() =>
+                              setIsEdit({ ...isEdit, behance: !isEdit.behance })
+                            }
                             className="  text-lime-500 font-bold uppercase whitespace-nowrap my-0"
                           >
                             {getInfo.behance}
@@ -454,7 +398,31 @@ const Main = () => {
                 </div>
                 <div className="col-span-9">
                   <div className=" space-y-5 text-lime-500">
-                    {getInfo.aboutme}
+                    {isEdit.aboutme ? (
+                      <p
+                        onDoubleClick={() =>
+                          setIsEdit({ ...isEdit, aboutme: !isEdit.aboutme })
+                        }
+                        className=" text-lime-500"
+                      >
+                        {getInfo.aboutme}
+                      </p>
+                    ) : (
+                      <TextArea
+                      rows='5'
+                        value={getInfo.aboutme}
+                        name="aboutme"
+                        onChange={handleChange}
+                        className={` border`}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === "Escape") {
+                            setIsEdit({ ...isEdit, aboutme: true });
+                          }
+                        }}
+                        type="text"
+                      />
+                    )}
+                    
                   </div>
                 </div>
               </div>
