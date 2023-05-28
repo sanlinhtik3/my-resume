@@ -3,30 +3,30 @@ import TextInput from "../components/TextInput";
 
 const Test = () => {
 
-  const [inputs, setInputs] = useState([{name: "", year: ""}]);
+  const [skillsInputs, setSkillsInputs] = useState([{name: "", year: ""}]);
 
   const addNew = () => {
-    setInputs([...inputs, { name: "" }]);
+    setSkillsInputs([...skillsInputs, { name: "" }]);
   };
 
   const handleDelete = (i) => {
-    const deleteValue = [...inputs];
+    const deleteValue = [...skillsInputs];
     deleteValue.splice(i, 1);
-    setInputs(deleteValue);
+    setSkillsInputs(deleteValue);
   };
 
   const handleChange = (e, i) => {
     const { name, value } = e.target;
-    const onChangeVal = [...inputs];
+    const onChangeVal = [...skillsInputs];
     onChangeVal[i][name]=value;
-    setInputs(onChangeVal);
+    setSkillsInputs(onChangeVal);
   };
 
-  console.log(inputs);
+  console.log(skillsInputs);
 
   return (
     <>
-      {inputs.map((input, i) => (
+      {skillsInputs.map((input, i) => (
         <div key={i} className="">
           <TextInput
             name="name"
