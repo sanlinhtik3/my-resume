@@ -5,7 +5,7 @@ import TextArea from "../components/TextArea";
 import TextInput from "../components/TextInput";
 import Markdown from "../components/Markdown";
 
-const Preview = ({color}) => {
+const Preview = ({ color }) => {
   const getInfo = JSON.parse(localStorage.getItem("info"));
 
   const { educations } = useSelector((state) => state.skills);
@@ -14,11 +14,19 @@ const Preview = ({color}) => {
   const { experiences } = useSelector((state) => state.skills);
   const { socialAccounts } = useSelector((state) => state.skills);
   const { languages } = useSelector((state) => state.skills);
-  
 
+  const defaultData = {
+    name: "San Lin Htike",
+    career: "Web Developer",
+    phone: "09 969 474 745",
+    email: "san Lin Htike",
+    behance: "sanlinhtike",
+    welcome: "Hello",
+    aboutme:
+      "Highly skilled and motivated Frontend Web Developer and Web UI/UX Designer with extensive experience in modern web development, proficient in HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, and React.js. Adept at creating clean and beautiful UI/UX designs. Seeking challenging opportunities to utilize my skills and contribute to innovative web development projects. Currently, I am teaching at inficreax as a Frontend Web Developer. I have got 3+ years experience in web development field. ",
+  };
 
-
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState(defaultData);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -43,12 +51,13 @@ const Preview = ({color}) => {
     phone: true,
     email: true,
     behance: true,
+    welcome: true,
     aboutme: true,
   });
 
   return (
     <>
-      <div className="mx-auto border col-span-6 text-blue-400">
+      <div className="col-span-6 border text-blue-400">
         <form
           className="prose prose-sm max-w-none"
           ref={componentRef}
@@ -207,11 +216,29 @@ const Preview = ({color}) => {
             <div className=" grid grid-cols-12 mt-0">
               <div className="col-span-3">
                 <div className="">
-                  <h4
-                    className={`bg-blue-500 rounded-md px-3 py-1 ml-8 inline-block text-white uppercase`}
-                  >
-                    Hello!
-                  </h4>
+                  {isEdit.welcome ? (
+                    <h4
+                      onDoubleClick={() =>
+                        setIsEdit({ ...isEdit, welcome: !isEdit.welcome })
+                      }
+                      className={`bg-blue-500 rounded-md px-3 py-1 ml-8 inline-block text-white uppercase`}
+                    >
+                      Hello!
+                    </h4>
+                  ) : (
+                    <TextInput
+                      value={getInfo.welcome}
+                      name="welcome"
+                      onChange={handleChange}
+                      className={` border`}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === "Escape") {
+                          setIsEdit({ ...isEdit, welcome: true });
+                        }
+                      }}
+                      type="text"
+                    />
+                  )}
                 </div>
               </div>
               <div className="col-span-9">
@@ -249,7 +276,7 @@ const Preview = ({color}) => {
               <div className=" grid grid-cols-12">
                 <div className="col-span-3">
                   <h4 className={`text-blue-500 uppercase my-0`}>
-                    <i className="bi bi-star"></i>{" "}
+                    <i className="bi bi-mortarboard"></i>
                     <span className=" ml-3">Education</span>
                   </h4>
                 </div>
@@ -309,9 +336,9 @@ const Preview = ({color}) => {
                   <div className=" col-span-9">
                     <div className=" grid grid-cols-12">
                       <div className=" col-span-3">
-                        <h4 className="">{input.position}</h4>
+                        <h4 className="">{input.company}</h4>
                         <h6 className=" text-xs text-slate-700">
-                          {input.duty}
+                          {input.position}
                         </h6>
                       </div>
                       <div className="col-span-9 border-b">
@@ -328,7 +355,7 @@ const Preview = ({color}) => {
               <div className=" grid grid-cols-12">
                 <div className="col-span-3">
                   <h4 className={`text-blue-500 uppercase my-0`}>
-                    <i className="bi bi-star"></i>{" "}
+                    <i className="bi bi-laptop"></i>
                     <span className=" ml-3">Skills</span>
                   </h4>
                 </div>
@@ -342,10 +369,10 @@ const Preview = ({color}) => {
                 <div className="col-span-3"></div>
 
                 <div className=" col-span-9">
-                  <div className=" grid grid-cols-4">
+                  <div className=" grid grid-cols-4 gap-2">
                     {skills.map((input, i) => (
                       <div key={i} className="">
-                        <h4 className={`text-blue-500 my-0`}>{input.name}</h4>
+                        <h4 className={` my-0`}>{input.name}</h4>
                       </div>
                     ))}
                   </div>
@@ -358,7 +385,7 @@ const Preview = ({color}) => {
               <div className=" grid grid-cols-12">
                 <div className="col-span-3">
                   <h4 className={`text-blue-500 uppercase my-0`}>
-                    <i className="bi bi-star"></i>{" "}
+                    <i className="bi bi-patch-check"></i>
                     <span className=" ml-3">Social Skills</span>
                   </h4>
                 </div>
@@ -374,8 +401,8 @@ const Preview = ({color}) => {
                 <div className=" col-span-9">
                   <div className=" grid grid-cols-12">
                     {socials.map((input, i) => (
-                      <div key={i} className="">
-                        <h4 className={`text-blue-500 my-0`}>{input.name}</h4>
+                      <div key={i} className="col-span-4">
+                        <h4 className={` my-0`}>{input.name}</h4>
                       </div>
                     ))}
                   </div>
@@ -388,8 +415,10 @@ const Preview = ({color}) => {
               <div className=" grid grid-cols-12">
                 <div className="col-span-3">
                   <h4 className={`text-blue-500 uppercase my-0`}>
-                    <i className="bi bi-star"></i>{" "}
-                    <span className=" ml-3">Language{languages.length > 1 && "s"}</span>
+                    <i className="bi bi-translate"></i>
+                    <span className=" ml-3">
+                      Language{languages.length > 1 && "s"}
+                    </span>
                   </h4>
                 </div>
 
@@ -404,8 +433,8 @@ const Preview = ({color}) => {
                 <div className=" col-span-9">
                   <div className=" grid grid-cols-12">
                     {languages.map((input, i) => (
-                      <div key={i} className="">
-                        <h4 className={`text-blue-500 my-0`}>{input.name}</h4>
+                      <div key={i} className=" col-span-4">
+                        <h4 className={` my-0`}>{input.name}</h4>
                       </div>
                     ))}
                   </div>
@@ -418,7 +447,7 @@ const Preview = ({color}) => {
               <div className=" grid grid-cols-12">
                 <div className="col-span-3">
                   <h4 className={`text-blue-500 uppercase my-0`}>
-                    <i className="bi bi-star"></i>{" "}
+                    <i className="bi bi-patch-check"></i>
                     <span className=" ml-3">Social Account</span>
                   </h4>
                 </div>

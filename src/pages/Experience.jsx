@@ -36,12 +36,12 @@ export const Experience = () => {
       <div className="">
         <div className=" grid grid-cols-12">
           <div className="col-span-3">
-            <h4 className="text-lime-500 uppercase my-0">
+            <h4 className="text-blue-500 uppercase my-0">
               <i className="bi bi-star"></i>{" "}
               <span className=" ml-3">Experience</span>
               <button
                 onClick={addNew}
-                className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
+                className=" cursor-pointer bg-blue-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
               >
                 <i className="bi bi-plus-circle"></i>
               </button>
@@ -49,15 +49,15 @@ export const Experience = () => {
           </div>
 
           <div className="col-span-9">
-            <div className=" h-px w-full bg-lime-500 mt-2"></div>
+            <div className=" h-px w-full bg-blue-500 mt-2"></div>
           </div>
         </div>
 
         {experienceInputs.map((input, i) => (
           <div key={i} className="grid grid-cols-12 gap-2">
-            <div className="col-span-3 border-l border-lime-500 ml-8">
+            <div className="col-span-3 border-l border-blue-500 ml-8">
               <div className=" flex justify-start items-center gap-3 -ml-1">
-                <div className="w-2 h-2 rounded-full bg-lime-500"></div>
+                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                 <TextInput
                   name="year"
                   value={input.year}
@@ -107,9 +107,9 @@ export const Experience = () => {
         ))}
 
         {/* <div className="grid grid-cols-12">
-          <div className="col-span-3 border-l border-lime-500 ml-8">
+          <div className="col-span-3 border-l border-blue-500 ml-8">
             <div className=" flex items-center gap-3 -ml-1">
-              <div className="w-2 h-2 rounded-full bg-lime-500"></div>
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
               <h4>2014-2018</h4>
             </div>
           </div>

@@ -1,12 +1,13 @@
 import React from "react";
 
-const Button = ({ className, icon, name, ...props }) => {
+const Button = ({ className='', icon, children, ...props }) => {
   return (
     <div>
       <button
-        className={`${className} cursor-pointer bg-lime-500 text-sm  text-white flex justify-center items-center whitespace-nowrap p-3 py-1 rounded-lg`}
+        {...props}
+        className={`${className} flex justify-center items-center rounded-xl px-2 py-1 text-xs ring-1 ring-red-200`}
       >
-        {name} <i className={`bi bi-${icon}`}></i>
+        <i className={`bi bi-${icon} text-sm mr-1`}></i> {children}
       </button>
     </div>
   );

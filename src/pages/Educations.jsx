@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TextInput from "../components/TextInput";
 import { useDispatch } from "react-redux";
 import { createEducation } from "../features/skillSlice";
+import Button from "../components/Button";
 
 const Educations = () => {
   const dispatch = useDispatch();
@@ -39,10 +40,11 @@ const Educations = () => {
         <div className="grid grid-cols-12">
           <div className="col-span-3">
             <h4 className=" uppercase my-0 flex items-center gap-3">
-              <i className="bi bi-star"></i> <span className="">Education</span>
+              <i className="bi bi-mortarboard"></i>
+              <span className="">Education</span>
               <button
                 onClick={addNew}
-                className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
+                className=" cursor-pointer  text-sm rounded-xl text-blue-500 flex justify-center items-center w-[10px] h-[10px] p-3"
               >
                 <i className="bi bi-plus-circle"></i>
               </button>
@@ -50,15 +52,18 @@ const Educations = () => {
           </div>
 
           <div className="col-span-9">
-            <div className=" h-px w-full bg-lime-500 mt-2"></div>
+            <div className=" h-px w-full bg-blue-500 mt-2"></div>
           </div>
         </div>
 
         <div className=" grid grid-cols-1 gap-5">
           {educationInputs.map((input, i) => (
-            <div key={i} className=" flex items-end gap-x-2 w-full border p-3 rounded-xl">
+            <div
+              key={i}
+              className=" flex items-end gap-x-2 w-full border p-3 rounded-xl"
+            >
               <div className=" w-full">
-                <label htmlFor="">Year</label>
+                <label className=" text-xs" htmlFor="">Year</label>
                 <TextInput
                   name="year"
                   value={input.year}
@@ -68,7 +73,7 @@ const Educations = () => {
                 />
               </div>
               <div className=" w-full">
-                <label htmlFor="">University Name</label>
+                <label className=" text-xs" htmlFor="">University Name</label>
                 <TextInput
                   name="name"
                   value={input.name}
@@ -78,7 +83,7 @@ const Educations = () => {
                 />
               </div>
               <div className=" w-full">
-                <label htmlFor="">Degree</label>
+                <label className=" text-xs" htmlFor="">Degree</label>
                 <TextInput
                   name="degree"
                   value={input.degree}
@@ -87,12 +92,13 @@ const Educations = () => {
                   type="text"
                 />
               </div>
-              <button
+              <Button
+                className=" text-red-500 bg-red-100"
+                icon="x-circle"
                 onClick={() => handleDelete(i)}
-                className=" w-[10px] h-[10px] p-4 flex justify-center items-center bg-red-100 rounded-full"
               >
-                <i className="bi bi-x-circle text-red-500 text-sm"></i>
-              </button>
+                Delete
+              </Button>
             </div>
           ))}
         </div>

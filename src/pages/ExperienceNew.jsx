@@ -6,10 +6,16 @@ import TextArea from "../components/TextArea";
 import Button from "../components/Button";
 
 export const ExperienceNew = () => {
+  const defaultValue = [
+    {
+      year: "2017",
+      position: "Web Developer",
+      company: "Inficreax",
+      description: "description",
+    },
+  ];
   const dispatch = useDispatch();
-  const [experienceInputs, setExperienceInputs] = useState([
-    { year: "", position: "", description: "", duty: "" },
-  ]);
+  const [experienceInputs, setExperienceInputs] = useState(defaultValue);
   const experienceSkills = JSON.parse(localStorage.getItem("experienceSkills"));
   // console.log(experienceSkills);
 
@@ -47,7 +53,12 @@ export const ExperienceNew = () => {
               <div className=" flex items-center gap-x-3">
                 <i className="bi bi-star"></i>
                 <span className="">Experience</span>
-                <Button onClick={addNew} name="Add New" />
+                <button
+                  onClick={addNew}
+                  className=" cursor-pointer text-sm rounded-xl text-blue-500 flex justify-center items-center w-[10px] h-[10px] p-3"
+                >
+                  <i className="bi bi-plus-circle"></i>
+                </button>
               </div>
             </h4>
           </div>
@@ -71,6 +82,19 @@ export const ExperienceNew = () => {
                   type="text"
                 />
               </div>
+
+              <div className="">
+                <label className=" text-xs" htmlFor="">
+                  company
+                </label>
+                <TextInput
+                  name="company"
+                  value={input.company}
+                  onChange={(e) => handleChange(e, i)}
+                  className={` border`}
+                  type="text"
+                />
+              </div>
               <div className="">
                 <label className=" text-xs" htmlFor="">
                   Position
@@ -83,25 +107,13 @@ export const ExperienceNew = () => {
                   type="text"
                 />
               </div>
-              <div className="">
-                <label className=" text-xs" htmlFor="">
-                  Position
-                </label>
-                <TextInput
-                  name="duty"
-                  value={input.duty}
-                  onChange={(e) => handleChange(e, i)}
-                  className={` border`}
-                  type="text"
-                />
-              </div>
             </div>
 
             <div className=" col-span-6">
               <div className="">
                 <div className="">
                   <label className=" text-xs" htmlFor="">
-                    Position
+                    Description
                   </label>
                   <TextArea
                     name="description"
@@ -112,12 +124,13 @@ export const ExperienceNew = () => {
                     rows="3"
                   />
                 </div>
-                <button
+                <Button
+                  className=" text-red-500 bg-red-100 mt-2"
+                  icon="x-circle"
                   onClick={() => handleDelete(i)}
-                  className=" w-[10px] h-[10px] p-4 flex justify-center items-center bg-red-100 rounded-full"
                 >
-                  <i className="bi bi-x-circle text-red-500 text-sm"></i>
-                </button>
+                  Delete
+                </Button>
               </div>
             </div>
           </div>
