@@ -8,30 +8,25 @@ import { useSelector } from "react-redux";
 import Preview from "./Preview";
 import SocialSkill from "./SocialSkills";
 import { Experience } from "./Experience";
+import Setting from "../components/Setting";
+import { ExperienceNew } from "./ExperienceNew";
+import { SocialAccount } from "./SocialAccount";
+import Educations from "./Educations";
+import Language from "./Languare";
 
 const Main = () => {
-  const getInfo = JSON.parse(localStorage.getItem("info"));
+  // const getInfo = JSON.parse(localStorage.getItem("info"));
 
-  // const skills = JSON.parse(localStorage.getItem("skills"));
+  // Settings
+  const { preference } = useSelector((state) => state.settings);
 
-  // const skills = useSelector((state) => state);
-  // console.log(useSelector((state) => state.skills));
+  // const [inputs, setInputs] = useState({});
+
   
-
-
-  const [inputs, setInputs] = useState({});
-  // console.log(inputs);
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputs((preValues) => ({ ...preValues, ...getInfo, [name]: value }));
-  };
-  localStorage.setItem("info", JSON.stringify({ ...getInfo, ...inputs }));
+  // localStorage.setItem("info", JSON.stringify({ ...getInfo, ...inputs }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(inputs)
   };
 
   // Print
@@ -40,16 +35,14 @@ const Main = () => {
     content: () => componentRef.current,
   });
 
-
   const [isEdit, setIsEdit] = useState({
     name: true,
     career: true,
     phone: true,
     email: true,
     behance: true,
-    aboutme: true
+    aboutme: true,
   });
-
 
   return (
     <>
@@ -57,24 +50,37 @@ const Main = () => {
         <div className=" col-span-6">
           <form
             className="prose prose-sm max-w-none border"
-            ref={componentRef}
+            // ref={componentRef}
             onSubmit={handleSubmit}
           >
             <div className="p-5 font-poppin space-y-5">
+              {/* Setting */}
+              <Setting />
+
+              {/* Education */}
+              <Educations />
+
               {/* Experience */}
-              <Experience/>
+              <ExperienceNew />
 
               {/* Design Skills */}
               <DesignSkills />
 
               {/* Social Skills */}
-              <SocialSkill/>
+              <SocialSkill />
+
+              {/* Language */}
+              <Language />
+
+              {/* Socail Account */}
+              <SocialAccount />
             </div>
           </form>
         </div>
 
         {/* Preview */}
-        <Preview/>
+
+        <Preview color={preference.color} />
       </div>
     </>
   );

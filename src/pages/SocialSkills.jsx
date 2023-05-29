@@ -35,12 +35,18 @@ const SocialSkill = () => {
   return (
     <>
       {/* Design socialSkills */}
-      <div className="">
+      <div className=" space-y-3">
         <div className="grid grid-cols-12">
           <div className="col-span-3">
-            <h4 className="text-lime-500 uppercase my-0">
+            <h4 className=" uppercase my-0 flex items-center gap-3">
               <i className="bi bi-star"></i>{" "}
-              <span className=" ml-3">Social socialSkills</span>
+              <span className="">Social Skills</span>
+              <button
+                onClick={addNew}
+                className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
+              >
+                <i className="bi bi-plus-circle"></i>
+              </button>
             </h4>
           </div>
 
@@ -49,51 +55,26 @@ const SocialSkill = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-12">
-          <div className="col-span-3"></div>
-
-          <div className=" col-span-9">
-            <div className=" flex gap-2 ">
-              <button
-                onClick={addNew}
-                className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
-              >
-                <i className="bi bi-plus-circle"></i>
-              </button>
-              <div className=" grid grid-cols-2 gap-5">
-                {socialInputs.map((input, i) => (
-                  <div key={i} className="">
-                    <h4
-                      onDoubleClick={() =>
-                        setIsEdit({
-                          ...isEdit,
-                          [`name${i}`]: !`${isEdit}.name${i}`,
-                        })
-                      }
-                      className=" text-lime-500 uppercase my-0"
-                    >
-                      {input.name}
-                    </h4>
-                    <div className=" flex items-center gap-x-2">
-                      <TextInput
-                        name="name"
-                        value={input.name}
-                        onChange={(e) => handleChange(e, i)}
-                        className={` border border-red-500`}
-                        type="text"
-                      />
-                      <button
-                        onClick={() => handleDelete(i)}
-                        className=" w-[10px] h-[10px] p-4 flex justify-center items-center bg-red-100 rounded-full"
-                      >
-                        <i className="bi bi-x-circle text-red-500 text-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                ))}
+        <div className=" grid grid-cols-2 gap-5">
+          {socialInputs.map((input, i) => (
+            <div key={i} className="">
+              <div className=" flex items-center gap-x-2">
+                <TextInput
+                  name="name"
+                  value={input.name}
+                  onChange={(e) => handleChange(e, i)}
+                  className={` border`}
+                  type="text"
+                />
+                <button
+                  onClick={() => handleDelete(i)}
+                  className=" w-[10px] h-[10px] p-4 flex justify-center items-center bg-red-100 rounded-full"
+                >
+                  <i className="bi bi-x-circle text-red-500 text-sm"></i>
+                </button>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

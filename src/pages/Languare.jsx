@@ -1,45 +1,46 @@
 import { useEffect, useState } from "react";
 import TextInput from "../components/TextInput";
 import { useDispatch } from "react-redux";
-import { createSkill } from "../features/skillSlice";
+import { createLanguage } from "../features/skillSlice";
 
-const DesignSkills = ({ setInputSkills }) => {
+const Language = () => {
   const dispatch = useDispatch();
-  const [skillsInputs, setSkillsInputs] = useState([{ name: "" }]);
-  const skills = JSON.parse(localStorage.getItem("skills"));
-  // console.log(skills);
+  const [languageInputs, setLanguageInputs] = useState([{ name: "" }]);
+  const languages = JSON.parse(localStorage.getItem("languages"));
+  //   console.log(languages);
 
   const addNew = (e) => {
-    setSkillsInputs([...skillsInputs, { name: "" }]);
+    setLanguageInputs([...languageInputs, { name: "" }]);
   };
 
   const handleDelete = (i) => {
-    const deleteValue = [...skillsInputs];
+    const deleteValue = [...languageInputs];
     deleteValue.splice(i, 1);
-    setSkillsInputs(deleteValue);
+    setLanguageInputs(deleteValue);
   };
 
   const handleChange = (e, i) => {
     const { name, value } = e.target;
-    const onChangeVal = [...skillsInputs];
+    const onChangeVal = [...languageInputs];
     onChangeVal[i][name] = value;
-    setSkillsInputs(onChangeVal);
+    setLanguageInputs(onChangeVal);
   };
-  localStorage.setItem("skills", JSON.stringify([...skillsInputs]));
+    localStorage.setItem("languages", JSON.stringify([...languageInputs]));
+  //   localStorage.setItem("languages", JSON.stringify([...languages]));
 
   useEffect(() => {
-    dispatch(createSkill(skills));
-  }, [skills]);
+    dispatch(createLanguage(languages));
+  }, [languages]);
 
   return (
     <>
-      {/* Design Skills */}
+      {/* Design languages */}
       <div className=" space-y-3">
         <div className="grid grid-cols-12">
           <div className="col-span-3">
-            <h4 className=" uppercase my-0 flex items-center gap-x-2">
+            <h4 className=" uppercase my-0 flex items-center gap-3">
               <i className="bi bi-star"></i>{" "}
-              <span className="">Skills</span>
+              <span className="">Languages</span>
               <button
                 onClick={addNew}
                 className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
@@ -54,15 +55,15 @@ const DesignSkills = ({ setInputSkills }) => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-3 gap-5">
-          {skillsInputs.map((input, i) => (
+        <div className=" grid grid-cols-2 gap-5">
+          {languageInputs.map((input, i) => (
             <div key={i} className="">
               <div className=" flex items-center gap-x-2">
                 <TextInput
                   name="name"
                   value={input.name}
                   onChange={(e) => handleChange(e, i)}
-                  className={` border `}
+                  className={` border`}
                   type="text"
                 />
                 <button
@@ -80,4 +81,4 @@ const DesignSkills = ({ setInputSkills }) => {
   );
 };
 
-export default DesignSkills;
+export default Language;

@@ -1,45 +1,46 @@
 import { useEffect, useState } from "react";
 import TextInput from "../components/TextInput";
-import { useDispatch } from "react-redux";
-import { createSkill } from "../features/skillSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createSocialAccount } from "../features/skillSlice";
 
-const DesignSkills = ({ setInputSkills }) => {
+export const SocialAccount = ({}) => {
   const dispatch = useDispatch();
-  const [skillsInputs, setSkillsInputs] = useState([{ name: "" }]);
-  const skills = JSON.parse(localStorage.getItem("skills"));
-  // console.log(skills);
+  const [socialAccountInputs, setSocialAccountInputs] = useState([{ name: "", icon: "" }]);
+  const socialAccountSkills = JSON.parse(localStorage.getItem("socialAccountSkills"));
+  // console.log(socialAccountSkills);
 
   const addNew = (e) => {
-    setSkillsInputs([...skillsInputs, { name: "" }]);
+    setSocialAccountInputs([...socialAccountInputs, { name: "" }]);
   };
 
   const handleDelete = (i) => {
-    const deleteValue = [...skillsInputs];
+    const deleteValue = [...socialAccountInputs];
     deleteValue.splice(i, 1);
-    setSkillsInputs(deleteValue);
+    setSocialAccountInputs(deleteValue);
   };
 
   const handleChange = (e, i) => {
     const { name, value } = e.target;
-    const onChangeVal = [...skillsInputs];
+    const onChangeVal = [...socialAccountInputs];
     onChangeVal[i][name] = value;
-    setSkillsInputs(onChangeVal);
+    setSocialAccountInputs(onChangeVal);
   };
-  localStorage.setItem("skills", JSON.stringify([...skillsInputs]));
+  localStorage.setItem("socialAccountSkills", JSON.stringify([...socialAccountInputs]));
+  //   localStorage.setItem("socialAccountSkills", JSON.stringify([...socialAccountSkills]));
 
   useEffect(() => {
-    dispatch(createSkill(skills));
-  }, [skills]);
+    dispatch(createSocialAccount(socialAccountSkills));
+  }, [socialAccountSkills]);
 
   return (
     <>
-      {/* Design Skills */}
+      {/* Design socialAccountSkills */}
       <div className=" space-y-3">
         <div className="grid grid-cols-12">
           <div className="col-span-3">
-            <h4 className=" uppercase my-0 flex items-center gap-x-2">
+            <h4 className=" uppercase my-0 flex items-center gap-3">
               <i className="bi bi-star"></i>{" "}
-              <span className="">Skills</span>
+              <span className="">Social Account</span>
               <button
                 onClick={addNew}
                 className=" cursor-pointer bg-lime-500 text-sm rounded-xl text-white flex justify-center items-center w-[10px] h-[10px] p-3"
@@ -54,15 +55,22 @@ const DesignSkills = ({ setInputSkills }) => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-3 gap-5">
-          {skillsInputs.map((input, i) => (
+        <div className="grid grid-cols-1 gap-y-3">
+          {socialAccountSkills.map((input, i) => (
             <div key={i} className="">
-              <div className=" flex items-center gap-x-2">
+              <div className="flex items-center gap-x-2">
+                <TextInput
+                  name="icon"
+                  value={input.icon}
+                  onChange={(e) => handleChange(e, i)}
+                  className={` border`}
+                  type="text"
+                />
                 <TextInput
                   name="name"
                   value={input.name}
                   onChange={(e) => handleChange(e, i)}
-                  className={` border `}
+                  className={` border w-full`}
                   type="text"
                 />
                 <button
@@ -79,5 +87,3 @@ const DesignSkills = ({ setInputSkills }) => {
     </>
   );
 };
-
-export default DesignSkills;
