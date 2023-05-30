@@ -13,17 +13,13 @@ import { ExperienceNew } from "./ExperienceNew";
 import { SocialAccount } from "./SocialAccount";
 import Educations from "./Educations";
 import Language from "./Languare";
+import { ProjectLink } from "./ProjectLink";
+import { isMobile } from "react-device-detect";
 
 const Main = () => {
-  // const getInfo = JSON.parse(localStorage.getItem("info"));
 
   // Settings
   const { preference } = useSelector((state) => state.settings);
-
-  // const [inputs, setInputs] = useState({});
-
-  
-  // localStorage.setItem("info", JSON.stringify({ ...getInfo, ...inputs }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +42,7 @@ const Main = () => {
 
   return (
     <>
+      
       <div className="grid grid-cols-12 px-2 mx-auto gap-5 my-20">
         <div className=" col-span-6">
           <form
@@ -74,6 +71,9 @@ const Main = () => {
 
               {/* Socail Account */}
               <SocialAccount />
+
+              {/* Project Link */}
+              <ProjectLink/>
             </div>
           </form>
         </div>

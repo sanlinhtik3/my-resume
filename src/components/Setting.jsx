@@ -20,12 +20,13 @@ const Setting = () => {
 
   useEffect(() => {
     dispatch(setSetting(getSettings));
-  }, [settings]);
+    // console.log(getSettings);
+  }, [settings, getSettings.color]);
 
 
   return (
     <>
-      <h1>Setting</h1>
+      <h1 className={` text-[${getSettings.color}]`}>Setting</h1>
       <div className="">
         <label htmlFor="">Your favourite color</label>
         <TextInput

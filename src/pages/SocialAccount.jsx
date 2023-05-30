@@ -5,8 +5,13 @@ import { createSocialAccount } from "../features/skillSlice";
 import Button from "../components/Button";
 
 export const SocialAccount = ({}) => {
+  const defaultValue = [
+    { icon: "github", name: "github.com/sanlinhtik3" },
+    { icon: "facebook", name: "fb.com/sanlinhtik.dev" },
+    { icon: "youtube", name: "youtube.com/@sanlinhtike" },
+  ];
   const dispatch = useDispatch();
-  const [socialAccountInputs, setSocialAccountInputs] = useState([{ name: "", icon: "" }]);
+  const [socialAccountInputs, setSocialAccountInputs] = useState(defaultValue);
   const socialAccountSkills = JSON.parse(localStorage.getItem("socialAccountSkills"));
   // console.log(socialAccountSkills);
 

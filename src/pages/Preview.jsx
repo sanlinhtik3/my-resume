@@ -14,26 +14,16 @@ const Preview = ({ color }) => {
   const { experiences } = useSelector((state) => state.skills);
   const { socialAccounts } = useSelector((state) => state.skills);
   const { languages } = useSelector((state) => state.skills);
+  const { projectLinks } = useSelector((state) => state.skills);
 
-  const defaultData = {
-    name: "San Lin Htike",
-    career: "Web Developer",
-    phone: "09 969 474 745",
-    email: "san Lin Htike",
-    behance: "sanlinhtike",
-    welcome: "Hello",
-    aboutme:
-      "Highly skilled and motivated Frontend Web Developer and Web UI/UX Designer with extensive experience in modern web development, proficient in HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, and React.js. Adept at creating clean and beautiful UI/UX designs. Seeking challenging opportunities to utilize my skills and contribute to innovative web development projects. Currently, I am teaching at inficreax as a Frontend Web Developer. I have got 3+ years experience in web development field. ",
-  };
-
-  const [inputs, setInputs] = useState(defaultData);
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs((preValues) => ({ ...preValues, ...getInfo, [name]: value }));
   };
-  localStorage.setItem("info", JSON.stringify({ ...getInfo, ...inputs }));
+  localStorage.setItem("info", JSON.stringify({ ...getInfo, ...inputs, }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,6 +45,10 @@ const Preview = ({ color }) => {
     aboutme: true,
   });
 
+  useEffect(() => {
+    document.title = getInfo.name + "_Resume";
+  }, [getInfo])
+
   return (
     <>
       <div className="col-span-6 border text-blue-400">
@@ -71,7 +65,7 @@ const Preview = ({ color }) => {
                 }
                 className={`text-blue-500 uppercase`}
               >
-                {getInfo.name}
+                {getInfo.name ? getInfo.name : "Your Name"} 
               </h1>
             ) : (
               <TextInput
@@ -96,7 +90,7 @@ const Preview = ({ color }) => {
                   }
                   className={`text-blue-500 font-bold whitespace-nowrap my-0`}
                 >
-                  {getInfo.career}
+                  {getInfo.career ? getInfo.career : "Your Career"}
                 </h4>
               ) : (
                 <TextInput
@@ -126,7 +120,7 @@ const Preview = ({ color }) => {
                           }
                           className={` font-normal whitespace-nowrap my-0`}
                         >
-                          {getInfo.phone}
+                          {getInfo.phone ? getInfo.phone : "09 969 474 745"}
                         </h4>
                       ) : (
                         <TextInput
@@ -157,7 +151,7 @@ const Preview = ({ color }) => {
                           }
                           className={`font-normal  whitespace-nowrap my-0`}
                         >
-                          {getInfo.email}
+                          {getInfo.email ? getInfo.email : 'sanlinhtike.dev@gmail.com'}
                         </h4>
                       ) : (
                         <TextInput
@@ -188,7 +182,7 @@ const Preview = ({ color }) => {
                           }
                           className={` font-normal whitespace-nowrap my-0`}
                         >
-                          {getInfo.behance}
+                          {getInfo.behance ? getInfo.behance : 'sanlinhtike'}
                         </h4>
                       ) : (
                         <TextInput
@@ -468,6 +462,47 @@ const Preview = ({ color }) => {
                     >
                       <i className={`bi bi-${input.icon}`}></i>
                       <h6 className={`my-0`}>{input.name}</h6>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Project Links */}
+            <div className="">
+              <div className=" grid grid-cols-12">
+                <div className="col-span-3">
+                  <h4 className={`text-blue-500 uppercase my-0`}>
+                    <i className="bi bi-patch-check"></i>
+                    <span className=" ml-3">
+                      Project Link{projectLinks.length > 1 && "S"}
+                    </span>
+                  </h4>
+                </div>
+
+                <div className="col-span-9">
+                  <div className={`h-px w-full bg-blue-500 mt-2`}></div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-12">
+                <div className="col-span-3"></div>
+
+                <div className=" col-span-9 space-y-3">
+                  {projectLinks.map((input, i) => (
+                    <div key={i} className="flex gap-2">
+                      <div className="w-[10px] h-[10px] p-3 rounded-lg bg-blue-100 text-blue-500 flex justify-center items-center">
+                        <span>{i + 1}</span>
+                      </div>
+                      <div className="text-xs w-full">
+                        <h4 className={`my-0`}>{input.name}</h4>
+                        <a
+                          className=" decoration-blue-500 font-normal"
+                          href={`///${input.link}`}
+                        >
+                          {input.link}
+                        </a>
+                      </div>
                     </div>
                   ))}
                 </div>
