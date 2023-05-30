@@ -48,7 +48,7 @@ export const SocialAccount = ({}) => {
               <i className="bi bi-patch-check"></i>{" "}
               <span className=" whitespace-nowrap">Social Account</span>
               <Button
-                className=" text-blue-500 ring-0"
+                className=" text-blue-500 ring-0 ring-transparent"
                 icon="plus-circle"
                 onClick={addNew}
               ></Button>
@@ -60,7 +60,7 @@ export const SocialAccount = ({}) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-y-3 border rounded-xl p-3">
+        <div className="grid grid-cols-1 gap-y-3 border border-blue-100 rounded-xl p-3">
           {socialAccountSkills.map((input, i) => (
             <div key={i} className="">
               <div className="flex items-center gap-x-2">

@@ -42,11 +42,16 @@ const Main = () => {
 
   return (
     <>
-      
-      <div className="grid grid-cols-12 px-2 mx-auto gap-5 my-20">
-        <div className=" col-span-6">
+      <div className="grid grid-cols-2 px-5 mx-auto gap-5 py-10 bg-slate-50">
+        <div className="col-span-2 ">
+          <h1 className=" text-center text-3xl font-bold text-blue-500">
+            - My Resume -
+          </h1>
+        </div>
+
+        <div className="">
           <form
-            className="prose prose-sm max-w-none border"
+            className="prose prose-sm max-w-none shadow-xl shadow-blue-50 bg-white rounded-xl"
             // ref={componentRef}
             onSubmit={handleSubmit}
           >
@@ -73,13 +78,12 @@ const Main = () => {
               <SocialAccount />
 
               {/* Project Link */}
-              <ProjectLink/>
+              <ProjectLink />
             </div>
           </form>
         </div>
 
         {/* Preview */}
-
         <Preview color={preference.color} />
       </div>
     </>

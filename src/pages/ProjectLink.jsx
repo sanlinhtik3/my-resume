@@ -49,7 +49,7 @@ export const ProjectLink = ({}) => {
                 Project Link{projectLinks.length > 1 && "S"}
               </span>
               <Button
-                className=" text-blue-500 ring-0"
+                className=" text-blue-500 ring-0 ring-transparent"
                 icon="plus-circle"
                 onClick={addNew}
               ></Button>

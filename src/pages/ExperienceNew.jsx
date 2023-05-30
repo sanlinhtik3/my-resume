@@ -67,14 +67,12 @@ export const ExperienceNew = () => {
         {experienceInputs.map((input, i) => (
           <div
             key={i}
-            className="grid grid-cols-12 gap-2  border p-3 rounded-xl mb-3"
+            className="grid grid-cols-12 gap-2  border border-blue-100 p-3 rounded-xl mb-3"
           >
             <div className="col-span-6 space-y-2">
               <div className="">
-                <label className=" text-xs" htmlFor="">
-                  Year
-                </label>
                 <TextInput
+                  label="Year"
                   name="year"
                   value={input.year}
                   onChange={(e) => handleChange(e, i)}
@@ -84,10 +82,8 @@ export const ExperienceNew = () => {
               </div>
 
               <div className="">
-                <label className=" text-xs" htmlFor="">
-                  company
-                </label>
                 <TextInput
+                  label="company"
                   name="company"
                   value={input.company}
                   onChange={(e) => handleChange(e, i)}
@@ -96,10 +92,8 @@ export const ExperienceNew = () => {
                 />
               </div>
               <div className="">
-                <label className=" text-xs" htmlFor="">
-                  Position
-                </label>
                 <TextInput
+                  label="Position"
                   name="position"
                   value={input.position}
                   onChange={(e) => handleChange(e, i)}
@@ -112,9 +106,6 @@ export const ExperienceNew = () => {
             <div className=" col-span-6">
               <div className="">
                 <div className="">
-                  <label className=" text-xs" htmlFor="">
-                    Description
-                  </label>
                   <TextArea
                     name="description"
                     value={input.description}

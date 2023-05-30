@@ -60,11 +60,11 @@ const Educations = () => {
           {educationInputs.map((input, i) => (
             <div
               key={i}
-              className=" flex items-end gap-x-2 w-full border p-3 rounded-xl"
+              className=" flex items-end gap-x-2 w-full border border-blue-100 p-3 rounded-xl"
             >
               <div className=" w-full">
-                <label className=" text-xs" htmlFor="">Year</label>
                 <TextInput
+                  label="Year"
                   name="year"
                   value={input.year}
                   onChange={(e) => handleChange(e, i)}
@@ -73,8 +73,8 @@ const Educations = () => {
                 />
               </div>
               <div className=" w-full">
-                <label className=" text-xs" htmlFor="">University Name</label>
                 <TextInput
+                  label="University Name"
                   name="name"
                   value={input.name}
                   onChange={(e) => handleChange(e, i)}
@@ -83,8 +83,8 @@ const Educations = () => {
                 />
               </div>
               <div className=" w-full">
-                <label className=" text-xs" htmlFor="">Degree</label>
                 <TextInput
+                  label="Degree"
                   name="degree"
                   value={input.degree}
                   onChange={(e) => handleChange(e, i)}

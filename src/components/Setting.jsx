@@ -27,15 +27,13 @@ const Setting = () => {
   return (
     <>
       <h1 className={` text-[${getSettings.color}]`}>Setting</h1>
-      <div className="">
-        <label htmlFor="">Your favourite color</label>
-        <TextInput
-          name="color"
-          value={getSettings.color}
-          onChange={handleChange}
-          className=" border"
-        />
-      </div>
+      <TextInput
+        label="Your favourite color"
+        name="color"
+        value={getSettings.color}
+        onChange={handleChange}
+        className=""
+      />
     </>
   );
 };

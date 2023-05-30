@@ -51,7 +51,7 @@ const DesignSkills = ({ setInputSkills }) => {
             <h4 className=" uppercase my-0 flex items-center gap-x-2">
               <i className="bi bi-laptop"></i> <span className="">Skills</span>
               <Button
-                className=" text-blue-500 ring-0"
+                className=" text-blue-500 ring-0 ring-transparent"
                 icon="plus-circle"
                 onClick={addNew}
               ></Button>
@@ -63,7 +63,7 @@ const DesignSkills = ({ setInputSkills }) => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-3 gap-5 border rounded-xl p-3">
+        <div className=" grid grid-cols-3 gap-5 border border-blue-100 rounded-xl p-3">
           {skillsInputs.map((input, i) => (
             <div key={i} className="">
               <div className=" flex items-center gap-x-2">

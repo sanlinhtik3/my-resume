@@ -51,7 +51,7 @@ const Preview = ({ color }) => {
 
   return (
     <>
-      <div className="col-span-6 border text-blue-400">
+      <div className="prose prose-sm max-w-none shadow-xl shadow-blue-50 bg-white rounded-xl">
         <form
           className="prose prose-sm max-w-none"
           ref={componentRef}
@@ -65,7 +65,7 @@ const Preview = ({ color }) => {
                 }
                 className={`text-blue-500 uppercase`}
               >
-                {getInfo.name ? getInfo.name : "Your Name"} 
+                {getInfo.name ? getInfo.name : "Your Name"}
               </h1>
             ) : (
               <TextInput
@@ -151,7 +151,9 @@ const Preview = ({ color }) => {
                           }
                           className={`font-normal  whitespace-nowrap my-0`}
                         >
-                          {getInfo.email ? getInfo.email : 'sanlinhtike.dev@gmail.com'}
+                          {getInfo.email
+                            ? getInfo.email
+                            : "sanlinhtike.dev@gmail.com"}
                         </h4>
                       ) : (
                         <TextInput
@@ -182,7 +184,7 @@ const Preview = ({ color }) => {
                           }
                           className={` font-normal whitespace-nowrap my-0`}
                         >
-                          {getInfo.behance ? getInfo.behance : 'sanlinhtike'}
+                          {getInfo.behance ? getInfo.behance : "sanlinhtike"}
                         </h4>
                       ) : (
                         <TextInput

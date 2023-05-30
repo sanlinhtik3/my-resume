@@ -48,7 +48,7 @@ const Language = () => {
               <i className="bi bi-translate"></i>{" "}
               <span className="">Languages</span>
               <Button
-                className=" text-blue-500 ring-0"
+                className=" text-blue-500 ring-0 ring-transparent"
                 icon="plus-circle"
                 onClick={addNew}
               ></Button>
@@ -60,7 +60,7 @@ const Language = () => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-2 gap-5 border rounded-xl p-3">
+        <div className=" grid grid-cols-2 gap-5 border border-blue-100 rounded-xl p-3">
           {languageInputs.map((input, i) => (
             <div key={i} className="">
               <div className=" flex items-center gap-x-2">
